@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>모래시계</h1>
+    <script>
+        var max = Number(prompt("숫자를 입력해 주세요."));
+        //모래시계 위쪽 삼각형(역삼각형)
+        for (var i = 0; i < (max / 2); i++) {    //i = 0,1,2 .. (max/2)-1, (max/2)
+            //왼쪽 공백
+            for (var j = 0; j < i; j++) {
+                document.write("&nbsp");
+            }
+            //가운데 별
+            for (var j = 0; j < max - (2 * i); j++) {
+                document.write("*");
+            }
+            //오른쪽 공백
+            for (var j = 0; j < i; j++) {
+                document.write("&nbsp");
+            }
+            document.write("<br>");
+        }
+        //모래시계 아래쪽 삼각형
+        for (var i = parseInt(max / 2)-1; i >= 0; i--) {    //i = (max/2)-1 .. 2,1,0 (중앙의 별 1개 중복 제외)
+            //왼쪽 공백
+            for (var j = 0; j < i; j++) {
+                document.write("&nbsp");
+            }
+            //가운데 별
+            for (var j = 0; j < max - (2 * i); j++) {
+                document.write("*");
+            }
+            //오른쪽 공백
+            for (var j = 0; j < i; j++) {
+                document.write("&nbsp");
+            }
+            document.write("<br>");
+        }
+    </script>
+</body>
+
+</html>
