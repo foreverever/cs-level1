@@ -15,10 +15,10 @@
             var input_num = Number(prompt("2~10000사이의 숫자를 입력해 주세요."));
             if (input_num <= 10000 && input_num > 1) {
                 numbers = {};
-                //numbers.all = [];
+                numbers.all = [];
                 numbers.prime = [];
                 numbers.prime[0] = 2;
-
+                
                 numbers.isPrime = function (number) {
                     for (var i = 2; i <= number; i++) {
                         for (var j = 2; j < i; j++) {
@@ -40,10 +40,14 @@
                     }
                 }
                 numbers.getAllPrimes = function () {
-                    document.write(String(numbers.prime));
+                    for(var i = 0 ; i<this.prime.length;i++){
+                        document.write(numbers.prime[i]+"<br>");
+                    }
+                    
                 }
-                //numbers.addAll(input_num);
-                numbers.isPrime(input_num);
+                numbers.addAll(input_num);
+                console.log(numbers.all.length);
+                numbers.isPrime(numbers.all[numbers.all.length-1]);
                 numbers.getAllPrimes();
                 break;
             }
