@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        h2 {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>구구단 배열로 구현</h1>
+    <script>
+        var result = [];
+
+        for (var dan = 2; dan <= 9; dan++) {
+            function calculate() {
+                for (var i = 1; i <= 9; i++) {
+                    result[i] = dan * i;
+                }
+            }
+            function printResult() {
+                document.write("<h2>" + dan + "단" + "<br></h2>");
+                for (var i = 1; i <= 9; i++) {
+                    document.write(dan + "x" + i + "=" + result[i] + "<br>");
+                }
+            }
+
+            calculate();
+            printResult();
+            document.write("<br>");
+        }
+
+    </script>
+</body>
+
+</html>
