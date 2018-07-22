@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>소수 찾기</h1>
+    <script>
+        while (1) {
+            var input_num = Number(prompt("2~10000사이의 숫자를 입력해 주세요."));
+            if (input_num <= 10000 && input_num > 1) {
+                numbers = {};
+                //numbers.all = [];
+                numbers.prime = [];
+                numbers.prime[0] = 2;
+
+                numbers.isPrime = function (number) {
+                    for (var i = 2; i <= number; i++) {
+                        for (var j = 2; j < i; j++) {
+                            if (i % j === 0) {
+                                break;
+                            }
+                            else if (i - 1 === j) {
+                                numbers.addPrime(i);
+                            }
+                        }
+                    }
+                }
+                numbers.addPrime = function (number) {
+                    numbers.prime.push(number);
+                }
+                numbers.addAll = function (max_num) {
+                    for (var i = 1; i <= max_num; i++) {
+                        numbers.all[i - 1] = i;
+                    }
+                }
+                numbers.getAllPrimes = function () {
+                    document.write(String(numbers.prime));
+                }
+                //numbers.addAll(input_num);
+                numbers.isPrime(input_num);
+                numbers.getAllPrimes();
+                break;
+            }
+            else window.alert("2이상 10000이하의 숫자만 입력해 주세요.")
+        }
+    </script>
+
+</body>
+
+</html>
