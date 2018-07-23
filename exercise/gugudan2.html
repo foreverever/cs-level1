@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        h2 {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var n = 3;
+        var gugudan = new Object();     //=== var gugudan = {};
+        gugudan.result = [];
+        gugudan.calculate = function (n) {
+            for (var i = 0; i < 9; i++) {
+                this.result[i] = n * (i + 1);
+            }
+        }
+
+        gugudan.printResult = function () {
+            for (var i = 2; i <= 9; i++) {
+                document.write("<h2>" + i + "단" + "</h2><br>");
+                gugudan.calculate(i);
+                for (var j = 0; j < 9; j++) {
+                    document.write(i + "x" + (j + 1) + "=" + this.result[j] + "<br>");
+                }
+                document.write("<br>");
+            }
+        }
+
+        function main() {
+            gugudan.printResult();
+        }
+        main();
+    </script>
+
+</body>
+
+</html>
