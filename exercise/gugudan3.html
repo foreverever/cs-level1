@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        randomdan = {};
+        randomdan.result = [];
+        randomdan.n = Number(prompt("n,m단의 n의 숫자를 입력해 주세요"));
+        randomdan.m = Number(prompt("n,m단의 m의 숫자를 입력해 주세요"));
+        document.write("<h1>" + randomdan.n + "," + randomdan.m + "단" + "</h2>");
+
+        randomdan.calculate = function (n, m) {
+            for (var i = 0; i < m; i++) {
+                randomdan.result[i] = n * (i + 1);
+            }
+        }
+
+        randomdan.printResult = function () {
+            for (var i = 2; i <= this.n; i++) {
+                document.write("<h2>" + i + "단" + "</h2>");
+                this.calculate(i, this.m);
+                for (var j = 0; j < this.m; j++) {
+                    document.write(i + "x" + (j + 1) + "=" + this.result[j] + "<br>");
+                }
+            }
+        }
+
+        function main() {
+            randomdan.printResult();
+        }
+
+        main();
+    </script>
+</body>
+
+</html>
