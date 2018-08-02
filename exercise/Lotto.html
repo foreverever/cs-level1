@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var NumArr = [];
+        NumArr[0] = Math.floor(Math.random() * 45) + 1;
+        
+        var CreateLottoNum = function () {
+            for (var i = 0; i < 6; i++) {
+                var randNum = Math.floor(Math.random() * 45) + 1;
+                if (IsOnlyNum(randNum)) {
+                    NumArr.push(randNum);
+                }
+                else {
+                    i--
+                }
+            }
+        }
+
+        var IsOnlyNum = function (num) {
+            for (var i = 0; i < NumArr.length; i++) {
+                if (NumArr[i] === num) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        var main = function () {
+            CreateLottoNum();
+            NumArr.sort(function (a, b) {
+                return a - b;
+            });
+            console.log(NumArr);
+        }
+
+        main();
+
+    </script>
+</body>
+
+</html>
