@@ -16,6 +16,9 @@
             font-size: 20px;
             margin: 5px;
         }
+        #init {
+            font-size: 15px;
+        }
     </style>
 </head>
 
@@ -25,14 +28,24 @@
         <div id="word"></div>
         <div>
             <button id="swap" onclick="swap()">뒤집기</button>
-            <button id="shift" onclick="shift()">밀어내기</button>
+            <button id="shift" onclick="rightShift()">오른쪽 밀기</button>
+            <button id="shift2" onclick="leftShift()">왼쪽 밀기</button>
+            <button id="rand" onclick="randMix()">무작위 섞기</button>
+        </div>
+        <div>
+            <button id="init" onclick="initStr()">초기화</button>
         </div>
     </div>
     <script>
+        var originStr = [];
         //사용자로 부터 문자열 입력 받기
         var getString = function () {
             var str = prompt("문자열 입력");
             str = str.split("");
+            //초기화 함수를 위한 오리진배열 생성
+            for (var i = 0; i < str.length; i++) {
+                originStr[i] = str[i];
+            }
             return str;
         }
 
@@ -47,9 +60,11 @@
             }
         }
         var str = getString();  //전역변수 안쓰고 처음 getString에서 얻은 고정된 str배열을 가지고 다른 함수에 계속 작업 못하나??
-        var btns = [];
+        //var originStr = [];   //얘 호이스팅 적용이 ㄴ? 변수만 적용 가능한듯.. 배열은 불가능..??
+        var btns = [];  //얘는 왜 호이스팅이 된거임 그럼;;
+        var x;
         //------------------------------>>word안에 버튼 객체들 어떻게 접근해야 함?? --> 그냥 버튼을 담는 배열을 추가하면 됨.... 씁
-        
+
         //뒤집기
         var swap = function (event) {
             var temp = [];
@@ -62,14 +77,42 @@
             }
         }
 
-        //밀어내기
-        var shift = function (event) {
+        //오른쪽으로 밀어내기
+        var rightShift = function (event) {
             str.unshift(str.pop());
             for (var i = 0; i < str.length; i++) {
                 btns[i].innerHTML = str[i];
             }
         }
 
+        //왼쪽으로 밀어내기
+        var leftShift = function (event) {
+            str.push(str.shift());
+            for (var i = 0; i < str.length; i++) {
+                btns[i].innerHTML = str[i];
+            }
+        }
+
+        //무작위로 섞기
+        var randMix = function (event) {
+            var tempStr = [];
+            for (var i = 0; i < str.length; i++) {
+                tempStr[i] = str[i];
+            }
+            while (tempStr.length !== 0) {
+                var randIndex = Math.floor(Math.random() * tempStr.length);
+                btns[tempStr.length - 1].innerHTML = tempStr[randIndex];
+                tempStr.splice(randIndex, 1);
+            }
+        }
+
+        //초기화
+        var initStr = function (event) {
+            for (var i = 0; i < originStr.length; i++) {
+                btns[i].innerHTML = originStr[i];
+                str[i]=originStr[i];
+            }
+        }
         //실행 함수
         var main = function () {
             createButton(str);
