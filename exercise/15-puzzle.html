@@ -7,49 +7,73 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        p {
-            font-size: 20px;
-        }
         button {
+            font-size: 20px;
             background-size: 10px;
+        }
+
+        button {
             font-size: 20px;
             margin: 5px;
         }
     </style>
 </head>
 
-<body>
-    <h1>밀어내기 퍼즐</h1>
+<body onload="main()">
+    <h1>문자열 퍼즐 만들기</h1>
     <div>
-        <p id="word1">Hello</p>
-        <div id="word2"></div>
-        <div id="btn">
-            <button onclick="swap(event)">뒤집기</button>
-            <button onclick="shift(event)">밀어내기</button>
+        <div id="word"></div>
+        <div>
+            <button id="swap" onclick="swap()">뒤집기</button>
+            <button id="shift" onclick="shift()">밀어내기</button>
         </div>
-        <p>완료되었습니다.</p>
     </div>
     <script>
+        //사용자로 부터 문자열 입력 받기
         var getString = function () {
-            var str = prompt("문자 입력");
-            str=str.split("");
+            var str = prompt("문자열 입력");
+            str = str.split("");
             return str;
         }
-        var createButton = function(str){
-            var getbutton = document.getElementById("word2");
-            for(var i = 0; i<str.length;i++){
+
+        //버튼 생성
+        var createButton = function (str) {
+            var word = document.getElementById("word");
+            for (var i = 0; i < str.length; i++) {
                 var btn = document.createElement("button");
                 btn.innerHTML = str[i];
-                getbutton.appendChild(btn);
+                word.appendChild(btn);
+                btns.push(btn);
             }
         }
-        var swap = function(event){
-            console.log("뒤집기");
+        var str = getString();  //전역변수 안쓰고 처음 getString에서 얻은 고정된 str배열을 가지고 다른 함수에 계속 작업 못하나??
+        var btns = [];
+        //------------------------------>>word안에 버튼 객체들 어떻게 접근해야 함?? --> 그냥 버튼을 담는 배열을 추가하면 됨.... 씁
+        
+        //뒤집기
+        var swap = function (event) {
+            var temp = [];
+            while (str.length !== 0) {
+                temp.push(str.pop());
+            }
+            str = temp;
+            for (var i = 0; i < str.length; i++) {
+                btns[i].innerHTML = str[i];
+            }
         }
-        var shift = function(event){
-            console.log("밀어내기");
+
+        //밀어내기
+        var shift = function (event) {
+            str.unshift(str.pop());
+            for (var i = 0; i < str.length; i++) {
+                btns[i].innerHTML = str[i];
+            }
         }
-        createButton(getString());
+
+        //실행 함수
+        var main = function () {
+            createButton(str);
+        }
     </script>
 </body>
 
