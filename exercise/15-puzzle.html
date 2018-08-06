@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p {
+            font-size: 20px;
+        }
+        button {
+            background-size: 10px;
+            font-size: 20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>밀어내기 퍼즐</h1>
+    <div>
+        <p id="word1">Hello</p>
+        <div id="word2"></div>
+        <div id="btn">
+            <button onclick="swap(event)">뒤집기</button>
+            <button onclick="shift(event)">밀어내기</button>
+        </div>
+        <p>완료되었습니다.</p>
+    </div>
+    <script>
+        var getString = function () {
+            var str = prompt("문자 입력");
+            str=str.split("");
+            return str;
+        }
+        var createButton = function(str){
+            var getbutton = document.getElementById("word2");
+            for(var i = 0; i<str.length;i++){
+                var btn = document.createElement("button");
+                btn.innerHTML = str[i];
+                getbutton.appendChild(btn);
+            }
+        }
+        var swap = function(event){
+            console.log("뒤집기");
+        }
+        var shift = function(event){
+            console.log("밀어내기");
+        }
+        createButton(getString());
+    </script>
+</body>
+
+</html>
