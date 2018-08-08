@@ -52,7 +52,7 @@
         <div id="cnt"></div>
     </div>
     <script>
-        var originStr = [];
+
         //사용자로 부터 문자열 입력 받기
         var getString = function () {
             var str = prompt("문자열 입력");
@@ -74,9 +74,9 @@
                 btns.push(btn);
             }
         }
+        var originStr = [];   //
         var str = getString();  //전역변수 안쓰고 처음 getString에서 얻은 고정된 str배열을 가지고 다른 함수에 계속 작업 못하나??
-        //var originStr = [];   //얘 호이스팅 적용이 ㄴ? 변수만 적용 가능한듯.. 배열은 불가능..??
-        var btns = [];  //얘는 왜 호이스팅이 된거임 그럼;;
+        var btns = [];
         var cnt;
         //------------------------------>>word안에 버튼 객체들 어떻게 접근해야 함?? --> 그냥 버튼을 담는 배열을 추가하면 됨.... 씁
 
