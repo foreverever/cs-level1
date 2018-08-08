@@ -16,8 +16,20 @@
             font-size: 20px;
             margin: 5px;
         }
+
         #init {
             font-size: 15px;
+        }
+
+        #ans {
+            font-size: 20px;
+            color: blue;
+        }
+
+        #checkans {
+            font-size: 20px;
+            color: brown;
+            font-weight: 900;
         }
     </style>
 </head>
@@ -25,16 +37,19 @@
 <body onload="main()">
     <h1>문자열 퍼즐 만들기</h1>
     <div>
+        <p id="ans"></p>
         <div id="word"></div>
         <div>
             <button id="swap" onclick="swap()">뒤집기</button>
-            <button id="shift" onclick="rightShift()">오른쪽 밀기</button>
-            <button id="shift2" onclick="leftShift()">왼쪽 밀기</button>
+            <button id="shift" onclick="leftShift()">왼쪽 밀기</button>
+            <button id="shift2" onclick="rightShift()">오른쪽 밀기</button>
             <button id="rand" onclick="randMix()">무작위 섞기</button>
         </div>
         <div>
             <button id="init" onclick="initStr()">초기화</button>
         </div>
+        <div id="checkans"></div>
+        <div id="cnt"></div>
     </div>
     <script>
         var originStr = [];
@@ -62,7 +77,7 @@
         var str = getString();  //전역변수 안쓰고 처음 getString에서 얻은 고정된 str배열을 가지고 다른 함수에 계속 작업 못하나??
         //var originStr = [];   //얘 호이스팅 적용이 ㄴ? 변수만 적용 가능한듯.. 배열은 불가능..??
         var btns = [];  //얘는 왜 호이스팅이 된거임 그럼;;
-        var x;
+        var cnt;
         //------------------------------>>word안에 버튼 객체들 어떻게 접근해야 함?? --> 그냥 버튼을 담는 배열을 추가하면 됨.... 씁
 
         //뒤집기
@@ -75,6 +90,8 @@
             for (var i = 0; i < str.length; i++) {
                 btns[i].innerHTML = str[i];
             }
+            cnt++;
+            answerCheck();
         }
 
         //오른쪽으로 밀어내기
@@ -83,6 +100,8 @@
             for (var i = 0; i < str.length; i++) {
                 btns[i].innerHTML = str[i];
             }
+            cnt++;
+            answerCheck();
         }
 
         //왼쪽으로 밀어내기
@@ -91,6 +110,8 @@
             for (var i = 0; i < str.length; i++) {
                 btns[i].innerHTML = str[i];
             }
+            cnt++;
+            answerCheck();
         }
 
         //무작위로 섞기
@@ -102,20 +123,57 @@
             while (tempStr.length !== 0) {
                 var randIndex = Math.floor(Math.random() * tempStr.length);
                 btns[tempStr.length - 1].innerHTML = tempStr[randIndex];
+                str.pop();
+                str.unshift(tempStr[randIndex]);
                 tempStr.splice(randIndex, 1);
+                console.log(str);
             }
+            answerCheck();
         }
 
         //초기화
         var initStr = function (event) {
             for (var i = 0; i < originStr.length; i++) {
                 btns[i].innerHTML = originStr[i];
-                str[i]=originStr[i];
+                str[i] = originStr[i];
             }
+            answerCheck();
         }
+
+        //정답 유무 체크
+        var answerCheck = function () {
+            var ans = document.getElementById("checkans");
+            for (var i = 0; i < str.length; i++) {
+                if (str[i] !== originStr[i]) {
+                    ans.innerHTML = "일치하지 않습니다.";
+                    return;
+                }
+            }
+            ans.innerHTML = "일치합니다.";
+            var OutputCnt = document.getElementById("cnt");
+            OutputCnt.innerHTML = ("당신은 " + cnt + "번 만에 성공하셨습니다!");
+        }
+
+        //처음 랜덤으로 문자열 섞어주기
+        var initRandPos = function () {
+            var halfSwap = Math.floor(Math.random() * 2);
+            if (halfSwap) {
+                swap();
+            }
+            var n = Math.floor(Math.random() * str.length);
+            for (var i = 0; i < n; i++) {
+                rightShift();
+            }
+            cnt = 0;
+        }
+
         //실행 함수
         var main = function () {
             createButton(str);
+            initRandPos();
+            var answer = document.getElementById("ans");
+            var ansStr = originStr.join("");
+            answer.innerHTML = ansStr;
         }
     </script>
 </body>
