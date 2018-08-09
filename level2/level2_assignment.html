@@ -6,10 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <style>
+        button {
+            font-size: 30px;
+            background-size: 10px;
+        }
+
+        div {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body onload="main()">
-    
+    <div>
+        <button id="restart" onclick="startGame()">Restart Game</button>
+    </div>
     <script>
         //사용자로부터 숫자 받기
         var getUserNum = function () {
@@ -84,19 +97,24 @@
             return false;
         }
 
-        //실행 함수
-        var main = function () {
+        //게임 시작
+        var startGame = function () {
             var ComNum = getComNum();
+            console.log(ComNum);
             //3스트라이크가 나올 때 까지 반복
             while (1) {
                 var UserNum = getUserNum();
                 var stk = checkStrikeNum(ComNum, UserNum);
                 var ball = checkBallNum(ComNum, UserNum)
                 printResult(stk, ball);
-                console.log(ComNum);
                 if (isThreeStrike(stk)) break;
             }
-            window.alert("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            window.alert("3개의 숫자를 모두 맞히셨습니다!");
+        }
+
+        //실행 함수
+        var main = function () {
+            startGame();
         }
     </script>
 </body>
