@@ -8,17 +8,21 @@
     <title>Document</title>
     <style>
         button {
-            font-size: 30px;
+            font-size: 20px;
             background-size: 10px;
         }
 
         div {
             text-align: center;
         }
+        h1 {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body onload="main()">
+    <h1>숫자 야구게임</h1>
     <div>
         <button id="restart" onclick="startGame()">Restart Game</button>
     </div>
@@ -47,7 +51,7 @@
             return ComNum;
         }
 
-        //난수 중복 체크
+        //난수(컴퓨터 숫자) 중복 체크 
         var isOnlyNum = function (ComNum, randNum) {
             for (var i = 0; i < ComNum.length; i++) {
                 if (ComNum[i] === randNum) return false;
@@ -121,7 +125,7 @@
             }
         }
 
-        //입력 숫자 3개 미만, 4개 초과 체크
+        //사용자 입력숫자 개수 체크
         var checkNumberOfNum = function (UserNum) {
             if (UserNum.length > 3) {
                 window.alert("숫자 개수가 초과하였습니다. 다시 입력하세요.");
@@ -133,7 +137,7 @@
             }
         }
 
-        //입력 숫자 중복 체크
+        //사용자 입력숫자 중복 체크
         var checkDuplNum = function (UserNum) {
             var SortUserNum = [];
             for (var i = 0; i < UserNum.length; i++) {
