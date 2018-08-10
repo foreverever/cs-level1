@@ -119,11 +119,10 @@
 
         //사용자 입력 예외 처리
         var isNotRightUserNum = function (UserNum) {
-            if (checkNumberOfNum(UserNum) || checkDuplNum(UserNum) || checkRealNum(UserNum)) {
-                return true;
-            } else {
-                return false;
-            }
+            if (checkRealNum(UserNum)) return true;
+            if (checkNumberOfNum(UserNum)) return true;
+            if (checkDuplNum(UserNum)) return true;
+            return false;
         }
 
         //사용자 입력숫자 개수 체크
