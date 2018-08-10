@@ -15,6 +15,7 @@
         div {
             text-align: center;
         }
+
         h1 {
             text-align: center;
         }
@@ -118,7 +119,7 @@
 
         //사용자 입력 예외 처리
         var isNotRightUserNum = function (UserNum) {
-            if (checkNumberOfNum(UserNum) || checkDuplNum(UserNum)) {
+            if (checkNumberOfNum(UserNum) || checkDuplNum(UserNum) || checkRealNum(UserNum)) {
                 return true;
             } else {
                 return false;
@@ -147,6 +148,16 @@
             for (var i = 0; i < SortUserNum.length - 1; i++) {
                 if (SortUserNum[i] === SortUserNum[i + 1]) {
                     window.alert("중복된 숫자가 존재합니다. 다시 입력하세요.");
+                    return true;
+                }
+            }
+        }
+
+        //사용자 숫자 외 입력 체크
+        var checkRealNum = function (UserNum) {
+            for (var i = 0; i < UserNum.length; i++) {
+                if (isNaN(UserNum[i])) {
+                    window.alert("숫자가 아닙니다. 다시 입력하세요.");
                     return true;
                 }
             }
